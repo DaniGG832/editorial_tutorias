@@ -15,7 +15,9 @@ class MonografiaController extends Controller
      */
     public function index()
     {
-        //
+
+        $monografias = Monografia::orderBy('anyo')->get();
+       return view('monografias.index',['monografias'=>$monografias]);
     }
 
     /**
@@ -25,7 +27,9 @@ class MonografiaController extends Controller
      */
     public function create()
     {
-        //
+        $monografia = new Monografia();
+
+        return view('monografias.create',['monografia'=>$monografia]);
     }
 
     /**
