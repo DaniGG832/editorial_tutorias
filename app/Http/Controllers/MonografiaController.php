@@ -40,7 +40,14 @@ class MonografiaController extends Controller
      */
     public function store(StoreMonografiaRequest $request)
     {
-        //
+       $validado = $request->validated();
+
+       $monografia = new Monografia($validado);
+
+       $monografia->save();
+
+       return redirect()->route('monografias.index');
+
     }
 
     /**
@@ -51,7 +58,7 @@ class MonografiaController extends Controller
      */
     public function show(Monografia $monografia)
     {
-        //
+        return 'show';
     }
 
     /**
@@ -62,7 +69,7 @@ class MonografiaController extends Controller
      */
     public function edit(Monografia $monografia)
     {
-        //
+        return 'edit';
     }
 
     /**
@@ -85,6 +92,6 @@ class MonografiaController extends Controller
      */
     public function destroy(Monografia $monografia)
     {
-        //
+        return 'destroy';
     }
 }

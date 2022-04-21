@@ -18,6 +18,9 @@
                             Año
                         </th>
                         <th class="px-6 py-2 text-xs text-gray-500">
+                            mostrar
+                        </th>
+                        <th class="px-6 py-2 text-xs text-gray-500">
                             Editar
                         </th>
                         <th class="px-6 py-2 text-xs text-gray-500">
@@ -44,11 +47,15 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4">
-                                <a href="/monografia/{{ $monografia->id }}/edit"
+                                <a href="{{ route('monografias.show', $monografia,true) }}"
+                                    class="px-4 py-1 text-sm text-white bg-blue-400 rounded">mostrar</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="{{ route('monografias.edit', $monografia) }}"
                                     class="px-4 py-1 text-sm text-white bg-blue-400 rounded">Editar</a>
                             </td>
                             <td class="px-6 py-4">
-                                <form action="/monografia/{{ $monografia->id }}" method="POST">
+                                <form action="{{ route('monografias.destroy', $monografia) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button onclick="return confirm('¿Seguro?')"
@@ -61,6 +68,6 @@
                 </tbody>
             </table>
         </div>
-        <a href="/monografias/create" class="mt-4 text-blue-900 hover:underline">Insertar un nuevo alumno</a>
+        <a href="/monografias/create" class="mt-4 text-blue-900 hover:underline">Insertar nueva monografia</a>
     </div>
 </x-monografias>
