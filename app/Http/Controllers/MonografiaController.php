@@ -16,8 +16,18 @@ class MonografiaController extends Controller
     public function index()
     {
 
-        $monografias = Monografia::orderBy('anyo')->get();
-       return view('monografias.index',['monografias'=>$monografias]);
+        //$x = Monografia::find(1)->articulos->sum('num_paginas');
+        //$x = Monografia::withSum('articulos', 'num_paginas')->find(1);
+
+        // $x = Monografia::withSum('articulos', 'num_paginas')->get();
+
+
+        //dd($x);
+        //dd($x->articulos_sum_num_paginas);
+
+
+        $monografias = Monografia::orderBy('anyo')->withSum('articulos', 'num_paginas')->get();
+        return view('monografias.index', ['monografias' => $monografias]);
     }
 
     /**
@@ -29,7 +39,7 @@ class MonografiaController extends Controller
     {
         $monografia = new Monografia();
 
-        return view('monografias.create',['monografia'=>$monografia]);
+        return view('monografias.create', ['monografia' => $monografia]);
     }
 
     /**
@@ -40,25 +50,30 @@ class MonografiaController extends Controller
      */
     public function store(StoreMonografiaRequest $request)
     {
-       $validado = $request->validated();
+        $validado = $request->validated();
 
-       $monografia = new Monografia($validado);
+        $monografia = new Monografia($validado);
 
-       $monografia->save();
+        $monografia->save();
 
-       return redirect()->route('monografias.index');
-
+        return redirect()->route('monografias.index')->with('success', 'Monografia creada correctamente');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Monografia  $monografia
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Monografia  $monografiamoficica
      */
     public function show(Monografia $monografia)
     {
-        return 'show';
+
+
+        //dd($monografia->with('articulos')->withSum('articulos', 'num_paginas')->get());
+        //dd($monografia->with('articulos')->get());
+        //return $monografia->with('articulos')->withSum('articulos', 'num_paginas')->find($monografia->id);
+
+        return view('monografias.show', ['monografia' => $monografia->with('articulos')->withSum('articulos', 'num_paginas')->find($monografia->id)]);
+        //return view('monografias.show',['monografia'=>$monografia->with('articulos')->find($monografia->id)]);
     }
 
     /**
@@ -69,7 +84,7 @@ class MonografiaController extends Controller
      */
     public function edit(Monografia $monografia)
     {
-        return 'edit';
+        return view('monografias.edit', ['monografia' => $monografia]);
     }
 
     /**
@@ -81,7 +96,16 @@ class MonografiaController extends Controller
      */
     public function update(UpdateMonografiaRequest $request, Monografia $monografia)
     {
-        //
+        $validado = $request->validated();
+
+        // dd($validado['titulo']);
+
+        $monografia->titulo = $validado['titulo'];
+        $monografia->anyo = $validado['anyo'];
+
+        $monografia->save();
+
+        return redirect()->route('monografias.index')->with('success', 'Monografia modificada correctamente');
     }
 
     /**
@@ -92,6 +116,20 @@ class MonografiaController extends Controller
      */
     public function destroy(Monografia $monografia)
     {
-        return 'destroy';
+
+        $monografia->delete();
+        return redirect()->route('monografias.index')->with('success', 'Monografia borrada correctamente');
+    }
+
+    public function pruebas()
+    {
+
+      
+        $monografias= Monografia::find(1)->with('articulos')->withSum('articulos', 'num_paginas')->get();
+
+        $monografias= Monografia::withSum('articulos', 'num_paginas')->with('articulos')->get();
+        $monografias= Monografia::with('articulos')->withSum('articulos', 'num_paginas')->get();
+
+        return $monografias;
     }
 }

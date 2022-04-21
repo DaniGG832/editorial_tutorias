@@ -18,6 +18,9 @@
                             Año
                         </th>
                         <th class="px-6 py-2 text-xs text-gray-500">
+                            paginas
+                        </th>
+                        <th class="px-6 py-2 text-xs text-gray-500">
                             mostrar
                         </th>
                         <th class="px-6 py-2 text-xs text-gray-500">
@@ -44,6 +47,11 @@
                             <td class="px-6 py-4">
                                 <div class="text-sm text-gray-900">
                                     {{ $monografia->anyo }}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="text-sm text-gray-900">
+                                    {{ $monografia->articulos_sum_num_paginas }}
                                 </div>
                             </td>
                             <td class="px-6 py-4">

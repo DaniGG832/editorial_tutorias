@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MonografiaController;
+use App\Models\Monografia;
 use Illuminate\Support\Facades\Route;
 
 
@@ -24,6 +25,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::get('/monografias/pruebas',[MonografiaController::class,'pruebas']);
 
 
 Route::resource('monografias',MonografiaController::class);
