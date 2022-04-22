@@ -130,6 +130,9 @@ class MonografiaController extends Controller
         $monografias= Monografia::withSum('articulos', 'num_paginas')->with('articulos')->get();
         $monografias= Monografia::with('articulos')->withSum('articulos', 'num_paginas')->get();
 
-        return $monografias;
+        
+        
+
+        return $monografias->find(5)->articulos->sortByDesc('titulo');
     }
 }
