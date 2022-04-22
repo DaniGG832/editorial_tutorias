@@ -1,20 +1,20 @@
-
 {{-- {{$monografia->withSum('articulos','num_paginas')->get()}} --}}
 
 {{-- {{$monografia->withSum('articulos','num_paginas')->find($monografia->id)->articulos_sum_num_paginas}} --}}
 
-{{$monografia}} 
+{{ $monografia->articulos->count('articulos') }}
 
 
 <x-monografias>
-    
+
     <h1>monografias show</h1>
-    
-    <div class="outline-none mr-1 mb-1 px-3 py-1 bg-transprent text-xs font-bold text-blue-500 uppercase focus:outline-none">
-    
-        <a href="{{'/monografias'}}">Volver</a>
+
+    <div
+        class="outline-none mr-1 mb-1 px-3 py-1 bg-transprent text-xs font-bold text-blue-500 uppercase focus:outline-none">
+
+        <a href="{{ '/monografias' }}">Volver</a>
     </div>
-    
+
     <br>
 
     <table class="table-auto">
@@ -27,12 +27,12 @@
             </th>
         </thead>
         <tbody class="bg-blue-100">
-            
-                <tr>
-                    <td class="px-6 py-2">{{ $monografia->titulo }}</td>
-                    <td class="px-6 py-2">{{ $monografia->anyo }}</td>
-                </tr>
-            
+
+            <tr>
+                <td class="px-6 py-2">{{ $monografia->titulo }}</td>
+                <td class="px-6 py-2">{{ $monografia->anyo }}</td>
+            </tr>
+
         </tbody>
     </table>
 
@@ -42,8 +42,44 @@
         <h1>Número de páginas</h1>
         <td class="px-6 py-2">{{ $monografia->articulos_sum_num_paginas }}</td>
     </div>
+    <div>
+        <h1>Número de articulos</h1>
+        <td class="px-6 py-2">{{ $monografia->articulos->count() }}</td>
+    </div>
 
-   
+    <h2>Articulos</h2>
+
+    <table class="table-auto">
+        <thead class="bg-blue-300">
+            <tr>
+
+                <th class="px-6 py-2 ">
+                    Titulo
+                </th>
+                <th class="px-6 py-2 ">
+                    Año
+                </th>
+                <th class="px-6 py-2 ">
+                    num_paginas
+                </th>
+            </tr>
+        </thead>
+
+        <tbody class="bg-blue-100">
+            
+            @forelse ($monografia->articulos as $articulo)
+            <tr>
+                        
+                    <td class="px-6 py-2">{{ $articulo->titulo }}</td>
+                    <td class="px-6 py-2">{{ $articulo->anyo }}</td>
+                    <td class="px-6 py-2">{{ $articulo->num_paginas }}</td>
+                </tr>
+                    @empty
+                        
+                    @endforelse
+            
+        </tbody>
+    </table>
 
 
 </x-monografias>

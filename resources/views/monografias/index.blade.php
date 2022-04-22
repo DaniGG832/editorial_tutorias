@@ -8,14 +8,18 @@
             <table>
                 <thead class="bg-gray-50">
                     <tr>
-                      <th class="px-6 py-2 text-xs text-gray-500">
-                        id
-                    </th>
+                        <th class="px-6 py-2 text-xs text-gray-500">
+                            id
+                        </th>
                         <th class="px-6 py-2 text-xs text-gray-500">
                             Titulo
                         </th>
                         <th class="px-6 py-2 text-xs text-gray-500">
                             Año
+                        </th>
+                        </th>
+                        <th class="px-6 py-2 text-xs text-gray-500">
+                            Articulos
                         </th>
                         <th class="px-6 py-2 text-xs text-gray-500">
                             paginas
@@ -51,11 +55,16 @@
                             </td>
                             <td class="px-6 py-4">
                                 <div class="text-sm text-gray-900">
+                                    {{ $monografia->articulos->count() }}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="text-sm text-gray-900">
                                     {{ $monografia->articulos_sum_num_paginas }}
                                 </div>
                             </td>
                             <td class="px-6 py-4">
-                                <a href="{{ route('monografias.show', $monografia,true) }}"
+                                <a href="{{ route('monografias.show', $monografia, true) }}"
                                     class="px-4 py-1 text-sm text-white bg-blue-400 rounded">mostrar</a>
                             </td>
                             <td class="px-6 py-4">
