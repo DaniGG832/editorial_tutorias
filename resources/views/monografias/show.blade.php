@@ -5,7 +5,13 @@
 {{ $monografia->articulos->count('articulos') }}
 
 
+
 <x-monografias>
+
+    <x-prueba :monografia="$monografia">
+    
+     </x-prueba> 
+
 
     <h1>monografias show</h1>
 
@@ -94,6 +100,17 @@
     <p>
         La monografia no tiene ningun articulos
     </p> 
-        @endif
+     @endif
 
 </x-monografias>
+
+@{{hola}}
+
+@@foreach ($collection as $item)
+    
+
+@verbatim
+    <h1>
+        Bienvenido {{ nombre }} {{ apellido }}.
+    </h1>
+@endverbatim
