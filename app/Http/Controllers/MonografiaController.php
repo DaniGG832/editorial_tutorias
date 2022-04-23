@@ -116,9 +116,17 @@ class MonografiaController extends Controller
      */
     public function destroy(Monografia $monografia)
     {
+       // dd($monografia->articulos->count()==0);
+        if ($monografia->articulos->count()==0) {
+            # code...
+            $monografia->delete();
+            return redirect()->route('monografias.index')->with('success', 'Monografia borrada correctamente');
+        }else{
 
-        $monografia->delete();
-        return redirect()->route('monografias.index')->with('success', 'Monografia borrada correctamente');
+            return redirect()->route('monografias.index')->with('error', 'no se puede borrar la monografia, tiene articulos asociados ');
+        }
+
+
     }
 
     public function pruebas()

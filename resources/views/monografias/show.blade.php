@@ -73,7 +73,6 @@
                 </th>
             </tr>
         </thead>
-        @endif
         
         <tbody class="bg-blue-100">
             
@@ -85,11 +84,16 @@
                 <td class="px-6 py-2">{{ $articulo->num_paginas }}</td>
             </tr>
             @empty
-            La monografia no tiene ningun articulos
+           
             @endforelse
             
         </tbody>
     </table>
-    
+
+    @else
+    <p>
+        La monografia no tiene ningun articulos
+    </p> 
+        @endif
 
 </x-monografias>
