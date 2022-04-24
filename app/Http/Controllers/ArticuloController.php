@@ -16,8 +16,8 @@ class ArticuloController extends Controller
     public function index()
     {
 
-        return view('articulos.index',[
-            'articulos'=>Articulo::all()
+        return view('articulos.index', [
+            'articulos' => Articulo::all()
         ]);
     }
 
@@ -28,7 +28,14 @@ class ArticuloController extends Controller
      */
     public function create()
     {
-        //
+
+        $articulo = new Articulo();
+
+        //dd($articulos);
+
+        return view('articulos.create', [
+            'articulo' => $articulo
+        ]);
     }
 
     /**
@@ -39,7 +46,16 @@ class ArticuloController extends Controller
      */
     public function store(StoreArticuloRequest $request)
     {
-        //
+        //dd($request);
+        $validado = $request->validated();
+
+        $articulo = new Articulo($validado);
+
+        $articulo->save();
+
+        //$articulo->articulos()->sync($request->articulos);
+        //dd($articulo);
+        return redirect()->route('articulos.index')->with('success', 'Articulo creado correctamente');
     }
 
     /**
@@ -51,8 +67,8 @@ class ArticuloController extends Controller
     public function show(Articulo $articulo)
     {
 
-       
-        return view('articulos.show',['articulo'=>$articulo]);
+
+        return view('articulos.show', ['articulo' => $articulo]);
     }
 
     /**
@@ -63,7 +79,7 @@ class ArticuloController extends Controller
      */
     public function edit(Articulo $articulo)
     {
-        //
+        return view('articulos.edit',['articulo'=>$articulo]);
     }
 
     /**
@@ -75,7 +91,15 @@ class ArticuloController extends Controller
      */
     public function update(UpdateArticuloRequest $request, Articulo $articulo)
     {
-        //
+        $validado = $request->validated();
+        $articulo->titulo = $validado['titulo'];
+        $articulo->anyo = $validado['anyo'];
+        $articulo->num_paginas = $validado['num_paginas'];
+
+        $articulo->save();
+
+        return redirect()->route('articulos.index')->with('success', 'Articulo editado correctamente');
+
     }
 
     /**
@@ -86,6 +110,8 @@ class ArticuloController extends Controller
      */
     public function destroy(Articulo $articulo)
     {
-        //
+        $articulo->monografias()->sync([]);
+        $articulo->delete();
+        return redirect()->route('articulos.index')->with('success', 'articulo borrada correctamente');
     }
 }

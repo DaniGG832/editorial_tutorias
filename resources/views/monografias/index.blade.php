@@ -1,15 +1,18 @@
 <x-monografias>
-    <div
-        class="outline-none mr-1 mb-1 px-3 py-1 bg-transprent text-xs font-bold text-blue-500 uppercase focus:outline-none">
-
-        <a href="{{ '/articulos' }}"> ir a articulos</a>
-    </div>
-    <br>
-
-   
-
+    
     <div class="flex flex-col items-center mt-4">
         <h1 class="mb-4 text-2xl font-semibold">Monografias</h1>
+        
+        <div
+            class="outline-none mr-1 mb-1 px-3 py-1 bg-transprent text-xs font-bold text-blue-500 uppercase focus:outline-none">
+    
+            <a href="{{ '/articulos' }}"> ir a articulos</a>
+        </div>
+        
+    </div>
+    <a href="/monografias/create" class="mt-4 text-blue-900 hover:underline">Insertar nueva monografia</a>
+</div>
+<br>
         <div class="border border-gray-200 shadow">
             <table>
                 <thead class="bg-gray-50">
@@ -90,7 +93,5 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
-        <a href="/monografias/create" class="mt-4 text-blue-900 hover:underline">Insertar nueva monografia</a>
-    </div>
+       
 </x-monografias>

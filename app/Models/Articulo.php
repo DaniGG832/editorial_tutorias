@@ -9,6 +9,9 @@ class Articulo extends Model
 {
     use HasFactory;
 
+    public $fillable = ['titulo', 'anyo','num_paginas'];
+
+
     public function monografias()
     {
         return $this->belongsToMany(Monografia::class);

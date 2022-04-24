@@ -13,7 +13,7 @@ class UpdateArticuloRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class UpdateArticuloRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'titulo'=>'required|string|max:255',
+            'anyo'=> 'required|integer',
+           'num_paginas'=> 'required|integer'
         ];
     }
 }
