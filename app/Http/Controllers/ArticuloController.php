@@ -51,8 +51,8 @@ class ArticuloController extends Controller
     public function show(Articulo $articulo)
     {
 
-        dd($articulo);
-        return 'show';
+       
+        return view('articulos.show',['articulo'=>$articulo]);
     }
 
     /**
