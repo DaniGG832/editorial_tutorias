@@ -88,6 +88,10 @@
                 <td class="px-6 py-2">{{ $articulo->titulo }}</td>
                 <td class="px-6 py-2">{{ $articulo->anyo }}</td>
                 <td class="px-6 py-2">{{ $articulo->num_paginas }}</td>
+                <td class="px-6 py-4">
+                    <a href="{{ route('articulos.show', $articulo, true) }}"
+                        class="px-4 py-1 text-sm text-white bg-blue-400 rounded">mostrar</a>
+                </td>
             </tr>
             @empty
            
@@ -102,9 +106,18 @@
     </p> 
      @endif
 
+     <div
+        class="outline-none mr-1 mb-1 px-3 py-1 bg-transprent text-xs font-bold text-blue-500 uppercase focus:outline-none">
+
+        <a href="{{ '/articulos' }}">mostrar todos los articulos</a>
+    </div>
+
 </x-monografias>
 
-@{{hola}}
+
+{{-- para escapar caracteres especiales --}}
+
+{{-- @{{hola}}
 
 @@foreach ($collection as $item)
     
@@ -113,4 +126,4 @@
     <h1>
         Bienvenido {{ nombre }} {{ apellido }}.
     </h1>
-@endverbatim
+@endverbatim --}}

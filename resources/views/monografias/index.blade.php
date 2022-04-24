@@ -1,6 +1,12 @@
 <x-monografias>
+    <div
+        class="outline-none mr-1 mb-1 px-3 py-1 bg-transprent text-xs font-bold text-blue-500 uppercase focus:outline-none">
 
-    <h1>monografias index</h1>
+        <a href="{{ '/articulos' }}"> ir a articulos</a>
+    </div>
+    <br>
+
+   
 
     <div class="flex flex-col items-center mt-4">
         <h1 class="mb-4 text-2xl font-semibold">Monografias</h1>
@@ -75,7 +81,7 @@
                                 <form action="{{ route('monografias.destroy', $monografia) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button onclick="return confirm('¿Seguro?')"
+                                    <button onclick="return confirm('¿Seguro que desea borrar la monografia?')"
                                         class="px-4 py-1 text-sm text-white bg-red-400 rounded"
                                         type="submit">Borrar</button>
                                 </form>

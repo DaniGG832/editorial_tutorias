@@ -15,7 +15,10 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        return view('articulos.index');
+
+        return view('articulos.index',[
+            'articulos'=>Articulo::all()
+        ]);
     }
 
     /**
@@ -47,7 +50,9 @@ class ArticuloController extends Controller
      */
     public function show(Articulo $articulo)
     {
-        //
+
+        dd($articulo);
+        return 'show';
     }
 
     /**
