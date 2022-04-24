@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\MonografiaController;
 use App\Models\Monografia;
 use Illuminate\Support\Facades\Route;
@@ -30,3 +31,6 @@ Route::get('/monografias/pruebas',[MonografiaController::class,'pruebas']);
 
 
 Route::resource('monografias',MonografiaController::class);
+
+Route::resource('articulos',ArticuloController::class);
+

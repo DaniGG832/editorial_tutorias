@@ -116,31 +116,49 @@ class MonografiaController extends Controller
      */
     public function destroy(Monografia $monografia)
     {
-       // dd($monografia->articulos->count()==0);
-        if ($monografia->articulos->count()==0) {
+        // dd($monografia->articulos->count()==0);
+        if ($monografia->articulos->count() == 0) {
             # code...
             $monografia->delete();
             return redirect()->route('monografias.index')->with('success', 'Monografia borrada correctamente');
-        }else{
+        } else {
 
             return redirect()->route('monografias.index')->with('error', 'no se puede borrar la monografia, tiene articulos asociados ');
         }
-
-
     }
 
     public function pruebas()
     {
 
-      
-        $monografias= Monografia::find(1)->with('articulos')->withSum('articulos', 'num_paginas')->get();
 
-        $monografias= Monografia::withSum('articulos', 'num_paginas')->with('articulos')->get();
-        $monografias= Monografia::with('articulos')->withSum('articulos', 'num_paginas')->get();
+        //$monografias= Monografia::find(1)->with('articulos')->withSum('articulos', 'num_paginas')->get();
 
-        
-        
+        // $monografias= Monografia::withSum('articulos', 'num_paginas')->with('articulos')->get();
+        $monografias = Monografia::with('articulos')->withSum('articulos', 'num_paginas')->get();
+
+
+
 
         return $monografias->find(5)->articulos->sortByDesc('titulo');
     }
 }
+
+
+/* 
+metodos pivot
+
+        $monografias=Monografia::find(1)->articulos()->attach([6]);
+
+
+       $monografias=Monografia::find(1)->articulos()->detach([1,2,7]);
+
+
+        $monografias=Monografia::find(1)->articulos()->sync([1,3,7]);
+
+       $monografias=Monografia::find(1)->articulos()->syncWithoutDetaching([1,5]);
+
+       dd($monografias);
+
+
+
+*/
