@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMonografiaRequest;
 use App\Http\Requests\UpdateMonografiaRequest;
+use App\Models\Articulo;
 use App\Models\Monografia;
 
 class MonografiaController extends Controller
@@ -38,8 +39,14 @@ class MonografiaController extends Controller
     public function create()
     {
         $monografia = new Monografia();
+        $articulos = Articulo::all();
 
-        return view('monografias.create', ['monografia' => $monografia]);
+        //dd($articulos);
+
+        return view('monografias.create', [
+            'monografia' => $monografia,
+            'articulos' => $articulos
+        ]);
     }
 
     /**
@@ -50,11 +57,16 @@ class MonografiaController extends Controller
      */
     public function store(StoreMonografiaRequest $request)
     {
+
+        //dd($request);
+
         $validado = $request->validated();
 
         $monografia = new Monografia($validado);
 
         $monografia->save();
+
+        $monografia->articulos()->sync($request->articulos);
 
         return redirect()->route('monografias.index')->with('success', 'Monografia creada correctamente');
     }
@@ -84,7 +96,12 @@ class MonografiaController extends Controller
      */
     public function edit(Monografia $monografia)
     {
-        return view('monografias.edit', ['monografia' => $monografia]);
+        $articulos = Articulo::all();
+
+        return view('monografias.edit', [
+            'monografia' => $monografia,
+            'articulos' => $articulos,
+        ]);
     }
 
     /**
@@ -96,14 +113,22 @@ class MonografiaController extends Controller
      */
     public function update(UpdateMonografiaRequest $request, Monografia $monografia)
     {
+
+
+        //dd($request->articulos);
+
         $validado = $request->validated();
 
-        // dd($validado['titulo']);
+         //dd($validado['titulo']);
 
         $monografia->titulo = $validado['titulo'];
         $monografia->anyo = $validado['anyo'];
 
         $monografia->save();
+
+
+        //dd($validado);
+        $monografia->articulos()->sync($request->articulos);
 
         return redirect()->route('monografias.index')->with('success', 'Monografia modificada correctamente');
     }

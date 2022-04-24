@@ -13,6 +13,8 @@
           </p>
       @enderror
   </div>
+
+
   <div class="mb-6">
       <label for="anyo"
           class="text-sm font-medium text-gray-900 block mb-2 @error('anyo') text-red-500 @enderror">
@@ -27,6 +29,28 @@
           </p>
       @enderror
   </div>
+
+
+  <div class="outline-none mr-1 mb-1 px-3 py-1 bg-transprent text-xs font-bold text-blue-500 uppercase focus:outline-none">
+    
+    <p>Agregar articulos  </p>
+</div>
+
+  @foreach ($articulos as $articulo)
+      {{$articulo->id}} 
+  <label class="inline-flex items-center mt-3">
+    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600" 
+        name="articulos[]" value="{{$articulo->id}}" {{-- checked --}}>
+    <span class="ml-2 text-gray-700">{{$articulo->titulo}}</span>
+</label>
+<br>
+  @endforeach
+
+  
   <button type="submit"
-      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Enviar</button>
+  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Enviar</button>
 </form>
+
+{{-- <input type="checkbox" value="España" name="countries[]" /><label>España</label><br/>
+<input type="checkbox" value="Portugal" name="countries[]" /><label>Portugal</label><br/>
+<input type="checkbox" value="Francia" name="countries[]" /><label>Francia</label><br/> --}}

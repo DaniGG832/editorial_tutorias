@@ -2,7 +2,7 @@
 
     <h1>monografias create</h1>
 
-    
+   {{--  {{$articulos}} --}}
 
     {{-- {{$monografia->anyo}} --}}
     <br>
@@ -15,7 +15,7 @@
     <br>
 
 
-    <x-formulario :monografia="$monografia">
+    <x-formulario :monografia="$monografia" :articulos="$articulos">
 
         <form action="{{ route('monografias.store', [], false) }}" method="POST"
         enctype="multipart/form-data">
@@ -24,6 +24,7 @@
 
     </x-formulario>
   
+
 
 
 
