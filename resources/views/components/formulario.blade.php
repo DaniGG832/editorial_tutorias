@@ -36,11 +36,40 @@
     <p>Agregar articulos  </p>
 </div>
 
+
+@php
+
+$arrayId = array();
+foreach ($monografia->articulos as $key => $articulo) {
+    array_push($arrayId,  $articulo->id); 
+
+}
+
+//dd($arrayId);
+    //echo ($monografia->articulos[6]->titulo)
+
+@endphp
+
+{{-- @dd($monografia->articulos[6]->titulo) --}}
+
   @foreach ($articulos as $articulo)
-      {{$articulo->id}} 
+     {{--  {{$articulo->id}}  --}}
+      {{-- {{$monografia->articulos[$articulo->id-1]->id}} --}}
   <label class="inline-flex items-center mt-3">
     <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600" 
-        name="articulos[]" value="{{$articulo->id}}" {{-- checked --}}>
+        name="articulos[]" value="{{$articulo->id}}" 
+        
+        {{-- marcar los articulos por defecto   --}}
+
+        
+
+
+         @if (in_array($articulo->id,$arrayId))
+        {{--  $articulo->id==$monografia->articulos[$articulo->id-1]->id) --}}
+        checked
+        @endif 
+
+        {{-- checked --}}>
     <span class="ml-2 text-gray-700">{{$articulo->titulo}}</span>
 </label>
 <br>

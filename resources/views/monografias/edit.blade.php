@@ -18,6 +18,8 @@
 {{-- <span><?php echo $saludo ?></span> --}} 
 
 
+{{-- {{$monografia->articulos[0]->titulo}} --}}
+
 
     <x-formulario :monografia="$monografia" :articulos="$articulos">
         <form action="{{ route('monografias.update', [$monografia], false) }}" method="POST"

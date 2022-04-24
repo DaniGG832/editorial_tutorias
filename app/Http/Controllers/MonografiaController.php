@@ -141,15 +141,24 @@ class MonografiaController extends Controller
      */
     public function destroy(Monografia $monografia)
     {
+
+        //borrar relacion de tabla pivot y borrar monografia 
+        $monografia->articulos()->sync([]);
+        $monografia->delete();
+        return redirect()->route('monografias.index')->with('success', 'Monografia borrada correctamente');
+
+
         // dd($monografia->articulos->count()==0);
-        if ($monografia->articulos->count() == 0) {
+
+       //codigo para no poder borrar si tiene articulos relacionados
+      /*   if ($monografia->articulos->count() == 0) {
             # code...
             $monografia->delete();
             return redirect()->route('monografias.index')->with('success', 'Monografia borrada correctamente');
         } else {
 
             return redirect()->route('monografias.index')->with('error', 'no se puede borrar la monografia, tiene articulos asociados ');
-        }
+        } */
     }
 
     public function pruebas()
