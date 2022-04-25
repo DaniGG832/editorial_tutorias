@@ -4,12 +4,12 @@
 
 <x-monografias>
 
-    <x-prueba :monografia="$monografia">
+    {{-- <x-prueba :monografia="$monografia">
 
-    </x-prueba>
+    </x-prueba> --}}
 
     <h1>monografias show</h1>
-
+    <br>
     <div
         class="outline-none mr-1 mb-1 px-3 py-1 bg-transprent text-xs font-bold text-blue-500 uppercase focus:outline-none">
 
