@@ -18,7 +18,7 @@
     <br>
 
 
-    <x-formArticulos :articulo="$articulo" >
+    <x-formArticulos :articulo="$articulo" :autores="$autores">
 
         <form action="{{ route('articulos.store', [], false) }}" method="POST"
         enctype="multipart/form-data">

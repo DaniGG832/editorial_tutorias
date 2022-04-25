@@ -44,6 +44,48 @@
     @enderror
 </div>
 
+<div class="outline-none mr-1 mb-1 px-3 py-1 bg-transprent text-xs font-bold text-blue-500 uppercase focus:outline-none">
+    
+    <p>Agregar autores  </p>
+</div>
+
+@php
+
+
+$arrayId = array();
+foreach ($articulo->autores as $key => $autor) {
+    array_push($arrayId,  $autor->id); 
+
+}
+
+@endphp
+
+
+
+  @foreach ($autores as $autor)
+     
+  <label class="inline-flex items-center mt-3">
+    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600" 
+        name="autores[]" value="{{$autor->id}}" 
+        
+        {{-- marcar los autores por defecto   --}}
+
+        
+
+
+         @if (in_array($autor->id,$arrayId))
+        
+        checked
+        @endif 
+
+        {{-- checked --}}>
+    <span class="ml-2 text-gray-700">{{$autor->nombre}}</span>
+</label>
+<br>
+
+  @endforeach
+
+
 
   <br>
   <button type="submit"

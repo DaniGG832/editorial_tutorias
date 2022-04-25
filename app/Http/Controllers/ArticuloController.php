@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreArticuloRequest;
 use App\Http\Requests\UpdateArticuloRequest;
 use App\Models\Articulo;
+use App\Models\Autor;
 
 class ArticuloController extends Controller
 {
@@ -30,11 +31,12 @@ class ArticuloController extends Controller
     {
 
         $articulo = new Articulo();
-
+        $autores = Autor::all();
         //dd($articulos);
 
         return view('articulos.create', [
-            'articulo' => $articulo
+            'articulo' => $articulo,
+            'autores' => $autores,
         ]);
     }
 
@@ -46,13 +48,14 @@ class ArticuloController extends Controller
      */
     public function store(StoreArticuloRequest $request)
     {
-        //dd($request);
+       
         $validado = $request->validated();
 
         $articulo = new Articulo($validado);
 
         $articulo->save();
 
+        $articulo->autores()->sync($request->autores);
         //$articulo->articulos()->sync($request->articulos);
         //dd($articulo);
         return redirect()->route('articulos.index')->with('success', 'Articulo creado correctamente');
@@ -79,7 +82,12 @@ class ArticuloController extends Controller
      */
     public function edit(Articulo $articulo)
     {
-        return view('articulos.edit',['articulo'=>$articulo]);
+        $autores = Autor::all();
+
+        return view('articulos.edit',[
+            'articulo'=>$articulo,
+            'autores' => $autores,
+        ]);
     }
 
     /**
@@ -98,6 +106,8 @@ class ArticuloController extends Controller
 
         $articulo->save();
 
+        $articulo->autores()->sync($request->autores);
+
         return redirect()->route('articulos.index')->with('success', 'Articulo editado correctamente');
 
     }
@@ -110,8 +120,10 @@ class ArticuloController extends Controller
      */
     public function destroy(Articulo $articulo)
     {
+        $articulo->autores()->detach();
         $articulo->monografias()->sync([]);
         $articulo->delete();
+
         return redirect()->route('articulos.index')->with('success', 'articulo borrada correctamente');
     }
 }

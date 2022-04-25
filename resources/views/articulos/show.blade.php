@@ -23,6 +23,9 @@
             <th class="px-6 py-2 text-white">
                 Año
             </th>
+            <th class="px-6 py-2 text-white">
+                Autores
+            </th>
         </thead>
         <tbody class="bg-blue-100">
 
@@ -30,6 +33,15 @@
                 <td class="px-6 py-2">{{ $articulo->titulo }}</td>
                 <td class="px-6 py-2">{{ $articulo->anyo }}</td>
                 <td class="px-6 py-2">{{ $articulo->num_paginas }}</td>
+                <td class="px-6 py-2">
+                    <ul>
+                    @foreach ($articulo->autores as $autor)
+                        <li>{{'> '.$autor->nombre}}</li>
+                    @endforeach
+                </ul>
+                    {{-- {{ $articulo->autores }} --}}
+                </td>
+
             </tr>
 
         </tbody>
