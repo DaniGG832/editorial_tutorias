@@ -46,7 +46,7 @@ class AutorController extends Controller
         $autor = new Autor($validado);
         //dd($autor);
         $autor->save();
-        return redirect()->route('autores.index');
+        return redirect()->route('autores.index')->with('success', 'autor creado correctamente');
     }
 
     /**
@@ -88,7 +88,7 @@ class AutorController extends Controller
         $autor->nombre = $validado['nombre'];
         $autor->save();
         //dd($autor);
-        return redirect()->route('autores.index');
+        return redirect()->route('autores.index')->with('success', 'autor editado correctamente');
     }
 
     /**
@@ -99,8 +99,11 @@ class AutorController extends Controller
      */
     public function destroy(Autor $autor)
     {
-        //
+       $autor->delete();
+
+       return redirect()->route('autores.index')->with('success', 'autor borrada correctamente');
+
     }
 
-    
+
 }
