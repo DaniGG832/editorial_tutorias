@@ -1,6 +1,6 @@
 
 <br>
-{{$autor}}
+{{-- {{$autor}} --}}
 
 <x-monografias>
 
@@ -17,23 +17,30 @@ class="outline-none mr-1 mb-1 px-3 py-1 bg-transprent text-xs font-bold text-blu
 
 <br>
 
-<table class="table-auto">
-    <thead class="bg-blue-500">
-        <th class="px-6 py-2 text-white">
-            Nombre
-        </th>
-        
-    </thead>
-    <tbody class="bg-blue-100">
 
-        <tr>
-            <td class="px-6 py-2">{{ $autor->nombre }}</td>
-            
-        </tr>
 
-    </tbody>
-</table>
+   
 
+        <!-- Card 1 -->
+        <div class="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden">
+            <img class="h-56 lg:h-60 w-full object-cover" 
+            src="https://www.escueladeescritores.com/masalladeorion/wp-content/uploads/2018/02/technology-3167297_1920-1280x640.jpg">
+            <div class="p-3">
+                <h1 class="text-center font-bold text-2xl text-blue-500">
+                    <span class="text-sm text-primary text-gray-700">Autor</span>
+                    {{ $autor->nombre }} 
+                </h1>
+                <p class="paragraph-normal text-blue-400">
+                    Articulos
+                </p>
+                @foreach ($autor->articulos as $articulo)
+                    <p class="paragraph-normal text-blue-800">
+                        -{{ $articulo->titulo }}
+                    </p>
+                @endforeach
+                <br>
+            </div>
+        </div>
 
 
 </x-monografias>

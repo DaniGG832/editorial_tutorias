@@ -1,10 +1,6 @@
 {{-- {{$monografia->withSum('articulos','num_paginas')->get()}} --}}
-
 {{-- {{$monografia->withSum('articulos','num_paginas')->find($monografia->id)->articulos_sum_num_paginas}} --}}
-
-{{ $monografia->articulos->count('articulos') }}
-
-
+{{-- {{ $monografia->articulos->count('articulos') }} --}}
 
 <x-monografias>
 
