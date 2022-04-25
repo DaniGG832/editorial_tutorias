@@ -9,13 +9,9 @@
         <a href="{{ '/articulos' }}"> ir a articulos</a>
     </div>
 
-
-
     <a href="/autores/create" class="mt-4 text-blue-900 hover:underline">Crear nuevo autor</a>
 
-
     <br>
-
 
     <div class="grid justify-center md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7 my-10">
 
@@ -58,10 +54,6 @@
             </div>
         @endforeach
 
-
     </div>
-
-
-
 
 </x-monografias>

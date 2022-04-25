@@ -48,7 +48,7 @@ class ArticuloController extends Controller
      */
     public function store(StoreArticuloRequest $request)
     {
-       
+
         $validado = $request->validated();
 
         $articulo = new Articulo($validado);
@@ -84,8 +84,8 @@ class ArticuloController extends Controller
     {
         $autores = Autor::all();
 
-        return view('articulos.edit',[
-            'articulo'=>$articulo,
+        return view('articulos.edit', [
+            'articulo' => $articulo,
             'autores' => $autores,
         ]);
     }
@@ -109,7 +109,6 @@ class ArticuloController extends Controller
         $articulo->autores()->sync($request->autores);
 
         return redirect()->route('articulos.index')->with('success', 'Articulo editado correctamente');
-
     }
 
     /**

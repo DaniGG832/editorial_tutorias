@@ -5,10 +5,10 @@
         <a href="{{ '/monografias' }}">Volver monografias</a>
     </div>
     <div
-    class="outline-none mr-1 mb-1 px-3 py-1 bg-transprent text-xs font-bold text-blue-500 uppercase focus:outline-none">
+        class="outline-none mr-1 mb-1 px-3 py-1 bg-transprent text-xs font-bold text-blue-500 uppercase focus:outline-none">
 
-    <a href="{{ '/articulos' }}">Volver articulos</a>
-</div>
+        <a href="{{ '/articulos' }}">Volver articulos</a>
+    </div>
 
     <br>
 
@@ -35,10 +35,10 @@
                 <td class="px-6 py-2">{{ $articulo->num_paginas }}</td>
                 <td class="px-6 py-2">
                     <ul>
-                    @foreach ($articulo->autores as $autor)
-                        <li>{{'> '.$autor->nombre}}</li>
-                    @endforeach
-                </ul>
+                        @foreach ($articulo->autores as $autor)
+                            <li>{{ '> ' . $autor->nombre }}</li>
+                        @endforeach
+                    </ul>
                     {{-- {{ $articulo->autores }} --}}
                 </td>
 

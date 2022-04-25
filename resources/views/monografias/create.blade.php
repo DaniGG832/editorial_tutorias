@@ -14,7 +14,6 @@
     
     <br>
 
-
     <x-formulario :monografia="$monografia" :articulos="$articulos">
 
         <form action="{{ route('monografias.store', [], false) }}" method="POST"
@@ -24,9 +23,4 @@
 
     </x-formulario>
   
-
-
-
-
-
 </x-monografias>
