@@ -6,6 +6,7 @@ use App\Http\Requests\StoreAutorRequest;
 use App\Http\Requests\UpdateAutorRequest;
 use App\Models\Autor;
 
+
 class AutorController extends Controller
 {
     /**
@@ -15,7 +16,8 @@ class AutorController extends Controller
      */
     public function index()
     {
-        //
+        $autores = Autor::all();
+        return view('autores.index',['autores'=>$autores]);
     }
 
     /**
@@ -25,7 +27,10 @@ class AutorController extends Controller
      */
     public function create()
     {
-        //
+        $autor = new Autor();
+
+        return view('autores.create',['autor'=>$autor]);
+
     }
 
     /**
@@ -36,7 +41,12 @@ class AutorController extends Controller
      */
     public function store(StoreAutorRequest $request)
     {
-        //
+
+        $validado = $request->validated();
+        $autor = new Autor($validado);
+        //dd($autor);
+        $autor->save();
+        return redirect()->route('autores.index');
     }
 
     /**
@@ -47,7 +57,7 @@ class AutorController extends Controller
      */
     public function show(Autor $autor)
     {
-        //
+        return view('autores.show', ['autor' => $autor]);
     }
 
     /**
@@ -58,7 +68,9 @@ class AutorController extends Controller
      */
     public function edit(Autor $autor)
     {
-        //
+        //dd($autor);
+
+        return view('autores.edit',['autor'=>$autor]);
     }
 
     /**
@@ -70,7 +82,13 @@ class AutorController extends Controller
      */
     public function update(UpdateAutorRequest $request, Autor $autor)
     {
-        //
+        $validado = $request->validated();
+
+        //dd( $validado);
+        $autor->nombre = $validado['nombre'];
+        $autor->save();
+        //dd($autor);
+        return redirect()->route('autores.index');
     }
 
     /**
@@ -83,4 +101,6 @@ class AutorController extends Controller
     {
         //
     }
+
+    
 }

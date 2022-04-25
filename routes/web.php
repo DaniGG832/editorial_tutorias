@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticuloController;
+use App\Http\Controllers\AutorController;
 use App\Http\Controllers\MonografiaController;
 use App\Models\Monografia;
 use Illuminate\Support\Facades\Route;
@@ -33,4 +34,8 @@ Route::get('/monografias/pruebas',[MonografiaController::class,'pruebas']);
 Route::resource('monografias',MonografiaController::class);
 
 Route::resource('articulos',ArticuloController::class);
+
+//Route::get('autores/{autor}',[AutorController::class,'show']);
+
+Route::resource('autores',AutorController::class)->parameters(['autores'=>'autor']);
 

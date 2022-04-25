@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Autor extends Model
 {
+
+    protected $fillable= ['nombre'];
+    
     use HasFactory;
 
     protected $table = 'autores';

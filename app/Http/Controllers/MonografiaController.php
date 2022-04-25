@@ -27,7 +27,7 @@ class MonografiaController extends Controller
         //dd($x->articulos_sum_num_paginas);
 
 
-        $monografias = Monografia::orderBy('anyo')->withSum('articulos', 'num_paginas')->get();
+        $monografias = Monografia::orderBy('anyo','desc')->withSum('articulos', 'num_paginas')->get();
         return view('monografias.index', ['monografias' => $monografias]);
     }
 
