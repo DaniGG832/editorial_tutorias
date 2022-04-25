@@ -2,7 +2,11 @@
 
     <h1>autores index</h1>
 
-    <br>
+    <br><div
+    class="outline-none mr-1 mb-1 px-3 py-1 bg-transprent text-xs font-bold text-blue-500 uppercase focus:outline-none">
+
+    <a href="{{ '/articulos' }}"> ir a articulos</a>
+</div>
 
     <a href="/autores/create">Crear nuevo autor</a>
 

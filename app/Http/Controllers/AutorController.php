@@ -99,6 +99,8 @@ class AutorController extends Controller
      */
     public function destroy(Autor $autor)
     {
+
+        $autor->articulos()->sync([]);
        $autor->delete();
 
        return redirect()->route('autores.index')->with('success', 'autor borrada correctamente');

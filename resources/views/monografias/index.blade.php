@@ -8,6 +8,11 @@
     
             <a href="{{ '/articulos' }}"> ir a articulos</a>
         </div>
+        <div
+        class="outline-none mr-1 mb-1 px-3 py-1 bg-transprent text-xs font-bold text-blue-500 uppercase focus:outline-none">
+
+        <a href="{{ '/autores' }}"> ir a autores</a>
+    </div>
         
     </div>
     <a href="/monografias/create" class="mt-4 text-blue-900 hover:underline">Insertar nueva monografia</a>

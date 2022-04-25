@@ -16,18 +16,22 @@ class MonografiaController extends Controller
      */
     public function index()
     {
+        //$monografias= Monografia::find(1)->articulos[0]->autores;
 
+       // dd($monografias);
         //$x = Monografia::find(1)->articulos->sum('num_paginas');
         //$x = Monografia::withSum('articulos', 'num_paginas')->find(1);
-
+        
         // $x = Monografia::withSum('articulos', 'num_paginas')->get();
-
-
+        
+        
         //dd($x);
         //dd($x->articulos_sum_num_paginas);
-
-
+        
+        
+        
         $monografias = Monografia::orderBy('anyo','desc')->withSum('articulos', 'num_paginas')->get();
+        
         return view('monografias.index', ['monografias' => $monografias]);
     }
 
