@@ -29,7 +29,8 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
-Route::get('/monografias/pruebas',[MonografiaController::class,'pruebas']);
+Route::get('/monografias/pruebas',[MonografiaController::class,'pruebas'])
+    ->middleware(['auth','can:solo-admin']);
 
 Route::resource('monografias',MonografiaController::class);
 

@@ -5,6 +5,10 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
+// usar modelo user
+use app\Models\User;
+
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -25,6 +29,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('solo-admin', function (User $user) {
+            return $user->name == 'admin';
+        });
     }
 }
